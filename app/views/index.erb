@@ -4,10 +4,6 @@
   <% end %>
 <% end %>
 
-<div id="action-bar">
-  <%= render_partial :action_bar, { stories: @unread_stories } %>
-</div>
-
 <% if @unread_stories.empty? %>
   <%= render_partial :zen %>
 <% else %>
