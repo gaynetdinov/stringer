@@ -20,6 +20,11 @@ class StoryRepository
     Story.where(id: ids)
   end
 
+  def self.fetch_unread_by_timestamp(timestamp)
+    timestamp = Time.at(timestamp.to_i)
+    Story.where("created_at < ? AND is_read = ?", timestamp, false)
+  end
+
   def self.save(story)
     story.save
   end
@@ -41,6 +46,11 @@ class StoryRepository
   def self.starred(page = 1)
     Story.where(is_starred: true).includes(:feed)
           .order("published desc").page(page).per_page(20)
+  end
+
+  def self.unstarred_read_stories_older_than(num_days)
+    Story.where(is_read: true, is_starred: false)
+      .where('published <= ?', num_days.days.ago)
   end
 
   def self.read_count
