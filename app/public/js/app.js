@@ -139,6 +139,8 @@ var StoryView = Backbone.View.extend({
       var background_tab = window.open(this.model.get("permalink"));
       background_tab.blur();
       window.focus();
+      if (!this.model.get("keep_unread")) this.model.set("is_read", true);
+      if (this.model.shouldSave()) this.model.save();
     } else {
       this.model.toggle();
       window.scrollTo(0, this.$el.offset().top - 100);
