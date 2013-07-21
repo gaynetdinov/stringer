@@ -1,5 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Istok+Web&subset=cyrillic);
-
 html, body {
   height: 100%;
   color: #484948;
@@ -204,7 +202,7 @@ li.story .icon-star-empty {
 }
 
 .story-body h1, .story-body h2, .story-body h3 {
-  font-family: "Istok Web", Helvetica, Arial, sans-serif;
+  font-family: "Istok Web", sans-serif;
   font-weight: 700;
   line-height: 1.6;
 }
