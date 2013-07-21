@@ -1719,6 +1719,7 @@ body.vjs-full-window {
   left: 1em;
   right: 1em;
   font-family: "Istok Web", sans-serif; }
+
 .video-js .vjs-text-track {
   display: none;
   color: white;
@@ -1934,7 +1935,11 @@ body.vjs-full-window {
   height: 20px;
   width: 50px;
   top: 16px;
+<<<<<<< HEAD
   font: 300 13px "Istok Web", sans-serif; }
+=======
+  font: 300 13px "Istok Web", sans-serif;
+>>>>>>> be292bcb4ed260052734e74d5931d43ae3a8156e
 
 .vjs-current-time {
   right: 128px;
