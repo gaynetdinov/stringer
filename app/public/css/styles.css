@@ -212,7 +212,7 @@ li.story .icon-star-empty {
   margin-bottom: 13px;
 }
 
-li.story .story-body h1 a {
+#all_items, li.story .story-body h1 a {
   border: none;
   color: #484948;
 }
@@ -570,6 +570,6 @@ li.blank {
   margin: 0 7px;
 }
 
-#groups {
+#all_items, #groups {
   padding-top: 10px;
 }

@@ -329,14 +329,21 @@ $(document).ready(function() {
     $("#shortcuts").modal('toggle');
   });
 
-  $('#groups').tree();
-  // bind 'tree.click' event
+  $('#groups').tree({
+    selectable: false,
+    onCreateLi: function(node, $li) {
+      if (node.unread_count != null) {
+        $li.find('.jqtree-title').after('<span> [' + node.unread_count + ']</span>');
+        $li.find('.jqtree-element').css("font-weight", "bold");
+      }
+    }
+  });
+
   $('#groups').bind(
       'tree.click',
       function(event) {
         event.preventDefault();
-        var node = event.node;
-        window.location = '/news?group='+node.name;
+        window.location = '/news?'+event.node.url;
       }
   );
 });
