@@ -35,7 +35,7 @@ class StoryRepository
   end
 
   def self.unread_since_id(since_id)
-    unread.where('id > ?', since_id)
+    unread.where('stories.id > ?', since_id)
   end
 
   def self.read(page = 1)
