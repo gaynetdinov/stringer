@@ -249,13 +249,6 @@ p.story-details {
   margin-bottom: 8px;
 }
 
-.story-body p {
-  font-size: 16px;
-  line-height: 1.4;
-  margin-bottom: 16px;
-  font-weight: 300;
-}
-
 .story-body ul {
   list-style-type: disc;
 }
