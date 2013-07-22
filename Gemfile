@@ -19,6 +19,8 @@ gem "feedbag", github: "dwillis/feedbag"
 gem "highline", require: false
 gem "thread"
 gem "pg"
+gem "therubyracer"
+gem "coffee-script"
 
 group :production do
   gem "unicorn"

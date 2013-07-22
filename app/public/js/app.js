@@ -328,4 +328,15 @@ $(document).ready(function() {
   Mousetrap.bind("?", function() {
     $("#shortcuts").modal('toggle');
   });
+
+  $('#groups').tree();
+  // bind 'tree.click' event
+  $('#groups').bind(
+      'tree.click',
+      function(event) {
+        event.preventDefault();
+        var node = event.node;
+        window.location = '/news?group='+node.name;
+      }
+  );
 });

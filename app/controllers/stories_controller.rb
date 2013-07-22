@@ -4,6 +4,9 @@ require_relative "../commands/stories/mark_all_as_read"
 class Stringer < Sinatra::Base
   get "/news" do
     @unread_stories = StoryRepository.unread
+    if params['group'] && !params['group'].strip.empty?
+      @unread_stories = @unread_stories.joins({ feed: :group }).where("groups.name = ?", params['group'])
+    end
 
     erb :index
   end

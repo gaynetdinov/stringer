@@ -7,9 +7,12 @@ require "json"
 require "i18n"
 require "will_paginate"
 require "will_paginate/active_record"
+require "coffee-script"
+require "awesome_print"
 
 require_relative "app/helpers/authentication_helpers"
 require_relative "app/repositories/user_repository"
+require_relative "app/repositories/group_repository"
 
 I18n.load_path += Dir[File.join(File.dirname(__FILE__), 'config/locales', '*.yml').to_s]
 
@@ -65,6 +68,7 @@ class Stringer < Sinatra::Base
       "/js/jquery-visible-min.js",
       "/js/underscore-min.js",
       "/js/backbone-min.js",
+      "/js/tree.jquery.js",
       "/js/app.js"
     ]
 
@@ -72,6 +76,7 @@ class Stringer < Sinatra::Base
       "/css/bootstrap-min.css",
       "/css/flat-ui-no-icons.css",
       "/css/font-awesome-min.css",
+      "/css/jqtree.css",
       "/css/styles.css"
     ]
 
@@ -103,3 +108,4 @@ require_relative "app/controllers/first_run_controller"
 require_relative "app/controllers/sessions_controller"
 require_relative "app/controllers/feeds_controller"
 require_relative "app/controllers/debug_controller"
+require_relative "app/controllers/groups_controller"
