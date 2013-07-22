@@ -26,6 +26,7 @@ end
 
 group :development do
   gem "sqlite3"
+  gem "awesome_print"
 end
 
 group(:development, :test) do
