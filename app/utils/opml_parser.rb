@@ -12,12 +12,12 @@ class OpmlParser
         feeds_with_groups[group_name] ||= []
         outline.xpath('./outline').each do |feed_row|
           feeds_with_groups[group_name] << { name: feed_row.attributes["title"].value,
-                                                              url: feed_row.attributes["xmlUrl"].value }
+                                             url: feed_row.attributes["xmlUrl"].value }
         end
       else # it'a feed without group
         ap feeds_with_groups
         feeds_with_groups['wo_group'] << { name: outline.attributes["title"].value,
-                                          url: outline.attributes["xmlUrl"].value }
+                                           url: outline.attributes["xmlUrl"].value }
       end
     end
     feeds_with_groups
