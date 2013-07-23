@@ -212,7 +212,7 @@ li.story .icon-star-empty {
   margin-bottom: 13px;
 }
 
-#all_items, li.story .story-body h1 a {
+#all_items a, li.story .story-body h1 a {
   border: none;
   color: #484948;
 }
