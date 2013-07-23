@@ -5,9 +5,14 @@ class Stringer < Sinatra::Base
   get "/news" do
     @unread_stories = StoryRepository.unread
     if params['group'] && !params['group'].strip.empty?
-      @unread_stories = @unread_stories.joins({ feed: :group }).where("groups.name = ?", params['group'])
+      if params['group'] == 'Uncategorized'
+        @unread_stories = @unread_stories.joins(:feed).
+          where("feeds.group_id is NULL")
+      else
+        @unread_stories = @unread_stories.joins({ feed: :group }).where("groups.name = ?", params['group'])
+      end
     elsif params['feed'] && !params['feed'].strip.empty?
-      @unread_stories = @unread_stories.joins(:feed).where("feeds.name = ?", params['feed'])
+      @unread_stories = @unread_stories.where("feeds.name = ?", params['feed'])
     end
 
     erb :index

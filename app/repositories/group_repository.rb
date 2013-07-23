@@ -9,19 +9,19 @@ class GroupRepository
       where("stories.is_read = false").
       group("groups.name").inject({}){|res, row| res[row.name] = row.unread_count; res }
 
-    unread_count_wo_group = Feed.select("count(stories.id) as unread_count, feeds.name").
-      joins(:stories).where("stories.is_read = false").group("feeds.name").
-      inject({}){|res, row| res[row.name] = row.unread_count; res }
+    unread_count_uncategorized = Feed.select("count(stories.id) as unread_count").
+      joins(:stories).where("stories.is_read = false").
+      where("not exists(select 1 from groups where groups.id = feeds.group_id)").first.unread_count
 
-    feeds = Feed.joins("left outer join groups on feeds.group_id = groups.id").
-      includes(:group).order("lower(groups.name), lower(feeds.name)")
+    Feed.joins("left outer join groups on feeds.group_id = groups.id").
+      includes(:group).order("lower(groups.name), lower(feeds.name)").group_by{|row| row.group.try(:name)}.map do |group, feeds|
+      if group
+        { label: group, unread_count: unread_count[group], url: "group=#{group}", children: feeds.map{|feed| { label: feed.name }}}
+      else
+        { label: 'Uncategorized', unread_count: unread_count_uncategorized, url: "group=Uncategorized", children: feeds.map{|feed| { label: feed.name }}}
+      end
 
-    feeds_w_group, feeds_wo_group = feeds.partition{|feed| feed.group }
-
-    result = feeds_w_group.group_by{|row| row.group.name }.map do |group, feeds|
-      { label: group, unread_count: unread_count[group], url: "group=#{group}", children: feeds.map{|feed| { label: feed.name }}}
     end
-    result += feeds_wo_group.map{|f| { label: f.name, unread_count: unread_count_wo_group[f.name], url: "feed=#{f.name}" } }
   end
 
 end
