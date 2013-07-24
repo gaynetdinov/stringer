@@ -332,7 +332,7 @@ $(document).ready(function() {
   $('#groups').tree({
     selectable: false,
     onCreateLi: function(node, $li) {
-      if (node.unread_count != null) {
+      if (node.unread_count != null && node.unread_count != '0') {
         $li.find('.jqtree-title').after('<span> [' + node.unread_count + ']</span>');
         $li.find('.jqtree-element').css("font-weight", "bold");
       }
