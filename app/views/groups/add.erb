@@ -1,0 +1,19 @@
+<div id="action-bar">
+  <%= render_partial :group_action_bar %>
+</div>
+
+<div class="setup" id="add-group-container">
+  <h1><%= t('groups.add.title') %></h1>
+  <hr />
+  <p><%= t('groups.add.description') %></p>
+  <hr />
+  <form id="add-group-setup" method="POST" action="/groups">
+    <div class="control-group">
+      <input name="group_name" id="group-name" type="text" autofocus="autofocus" value="<%= @group_name %>"/>
+      <i class="icon-rss field-icon"></i>
+      <label id="group_url-label" class="field-label" for="group_url"><%= t('groups.add.fields.group_url') %></label>
+    </div>
+
+    <input type="submit" id="submit" class="btn btn-primary pull-right" value="<%= t('groups.add.fields.submit') %>"/>
+  </form>
+</div>

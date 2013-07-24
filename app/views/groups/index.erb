@@ -1,0 +1,17 @@
+<div id="action-bar">
+  <%= render_partial :group_action_bar %>
+</div>
+
+<% unless @groups.empty? %>
+<div id="groups-container">
+  <ul id="group-list">
+    <% @groups.each do |group| %>
+      <%= render_partial :group, { group: group } %>
+    <% end %>
+  </ul>
+</div>
+<% else %>
+  <div id="add-some-groups">
+    <p><%= t('groups.index.add_some_groups', :add => '<a href="/groups/new">'+t('groups.index.add')+'</a>') %></p>
+  </div>
+<% end %>

@@ -96,12 +96,12 @@ hr {
   margin-bottom: 14px;
 }
 
-ul#story-list, ul#feed-list {
+ul#story-list, ul#feed-list, ul#group-list {
   list-style-type: none;
   margin-left: 0px;
 }
 
-li.story, li.feed {
+li.story, li.feed, li.group {
   margin-bottom: 7px;
   background-color: white;
   border-radius: 5px;
@@ -140,7 +140,7 @@ li.story.open .story-preview {
   border-bottom: 2px solid #FAF2E5;
 }
 
-.story-preview , .feed-line{
+.story-preview , .feed-line , .group-line {
   height: 30px;
   line-height: 30px;
   cursor: pointer;
@@ -153,7 +153,7 @@ li.story.open .story-preview {
   white-space: pre-wrap;
 }
 
-.blog-title, .feed-title {
+.blog-title, .feed-title, .group-title {
   text-align: left;
   margin-left: 10px;
   overflow: hidden;

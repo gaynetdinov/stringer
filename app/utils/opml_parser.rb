@@ -15,7 +15,6 @@ class OpmlParser
                                              url: feed_row.attributes["xmlUrl"].value }
         end
       else # it'a feed without group
-        ap feeds_with_groups
         feeds_with_groups['wo_group'] << { name: outline.attributes["title"].value,
                                            url: outline.attributes["xmlUrl"].value }
       end

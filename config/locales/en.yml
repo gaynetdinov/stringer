@@ -24,6 +24,10 @@ en:
     - Oct
     - Nov
     - Dec
+  groups:
+    index:
+      add: add
+      add_some_groups: Hey, you should %{add} some groups.
   feeds:
     add:
       description: Paste in the URL of the blog you want to read.
@@ -71,6 +75,7 @@ en:
   partials:
     action_bar:
       add_feed: Add a feed
+      groups: Groups
       archived_stories: Archived stories
       mark_all: Mark all as read
       refresh: Refresh
@@ -86,6 +91,7 @@ en:
         yellow: Error parsing (probably temporary)
     feed_action_bar:
       add_feed: Add a feed
+      groups: Groups
       archived_stories: Archived stories
       feeds: View feeds
       home: Return to Stories
