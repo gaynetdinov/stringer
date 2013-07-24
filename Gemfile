@@ -21,13 +21,13 @@ gem "thread"
 gem "pg"
 gem "therubyracer"
 gem "coffee-script"
-gem "awesome_print"
 
 group :production do
   gem "unicorn"
 end
 
 group :development do
+  gem "awesome_print"
   gem "sqlite3"
 end
 
