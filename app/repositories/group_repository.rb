@@ -13,7 +13,7 @@ class GroupRepository
       group("groups.name").inject({}){|res, row| res[row.name] = row.unread_count; res }
 
     unread_count_by_feeds = Feed.select("count(stories.id) as unread_count, feeds.name as name").
-      joins(:stories).group("feeds.name").
+      joins(:stories).where("stories.is_read = false").group("feeds.name").
       inject({}){|res, row| res[row.name] = row.unread_count; res }
 
     unread_count_uncategorized = Feed.select("count(stories.id) as unread_count").
