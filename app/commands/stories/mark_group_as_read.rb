@@ -8,7 +8,7 @@ class MarkGroupAsRead
   end
 
   def mark_group_as_read
-    @repo.fetch_unread_by_timestamp(@timestamp).update_all(is_read: true) if @group_id == 1
+    @repo.fetch_unread_by_timestamp_and_group(@timestamp, @group_id).update_all(is_read: true)
   end
 end
 

@@ -127,21 +127,18 @@ class FeverAPI < Sinatra::Base
   end
 
   def groups
-    [
-      {
-        id: 1,
-        title: "All items"
-      }
-    ]
+    GroupRepository.list.map do |group|
+      { id: group.id, title: group.name }
+    end
   end
 
   def feeds_groups
-    [
+    Feed.all.group_by{|row| row.group_id }.map do |group_id, feeds|
       {
-        group_id: 1,
-        feed_ids: Feed.all.map{|f| f.id}.join(",")
+        group_id: group_id || 0,
+        feed_ids: feeds.map{|f| f.id }.join(",")
       }
-    ]
+    end
   end
 end
 
