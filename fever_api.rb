@@ -4,6 +4,7 @@ require "digest/md5"
 
 require_relative "app/repositories/story_repository"
 require_relative "app/repositories/feed_repository"
+require_relative "app/repositories/group_repository"
 
 require_relative "app/commands/stories/mark_as_read"
 require_relative "app/commands/stories/mark_as_unread"
@@ -129,21 +130,18 @@ class FeverAPI < Sinatra::Base
   end
 
   def groups
-    [
-      {
-        id: 1,
-        title: "All items"
-      }
-    ]
+    GroupRepository.list.map do |group|
+      { id: group.id, title: group.name }
+    end
   end
 
   def feeds_groups
-    [
+    FeedRepository.list.group_by(&:group_id).map do |group_id, feeds|
       {
-        group_id: 1,
-        feed_ids: Feed.all.map{|f| f.id}.join(",")
+        group_id: group_id,
+        feed_ids: feeds.map(&:id).join(",")
       }
-    ]
+    end
   end
 end
 
