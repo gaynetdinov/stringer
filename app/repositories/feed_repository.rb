@@ -20,5 +20,9 @@ class FeedRepository
   def self.list
     Feed.order('lower(name)')
   end
+
+  def self.in_groups
+    Feed.where("group_id is not null").order('lower(name)')
+  end
 end
 

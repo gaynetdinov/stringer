@@ -136,7 +136,7 @@ class FeverAPI < Sinatra::Base
   end
 
   def feeds_groups
-    FeedRepository.list.group_by(&:group_id).map do |group_id, feeds|
+    FeedRepository.in_groups.group_by(&:group_id).map do |group_id, feeds|
       {
         group_id: group_id,
         feed_ids: feeds.map(&:id).join(",")
