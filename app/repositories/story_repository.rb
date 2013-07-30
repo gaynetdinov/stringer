@@ -20,7 +20,7 @@ class StoryRepository
     Story.where(id: ids)
   end
 
-  def self.fetch_unread_by_timestamp_and_group(timestamp, group_id = 1)
+  def self.fetch_unread_by_timestamp_and_group(timestamp, group_id)
     timestamp = Time.at(timestamp.to_i)
     Story.joins(:feed).where("stories.created_at < ? AND stories.is_read = ? and feeds.group_id = ?", timestamp, false, group_id)
   end

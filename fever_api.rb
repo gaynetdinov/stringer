@@ -4,6 +4,7 @@ require "digest/md5"
 
 require_relative "app/repositories/story_repository"
 require_relative "app/repositories/feed_repository"
+require_relative "app/repositories/group_repository"
 
 require_relative "app/commands/stories/mark_as_read"
 require_relative "app/commands/stories/mark_as_unread"
@@ -25,8 +26,10 @@ class FeverAPI < Sinatra::Base
   end
 
   def authenticated?(api_key)
-    user = User.first
-    user.api_key && api_key.downcase == user.api_key.downcase
+    if api_key
+      user = User.first
+      user.api_key && api_key.downcase == user.api_key.downcase
+    end
   end
 
   get "/" do
@@ -133,12 +136,11 @@ class FeverAPI < Sinatra::Base
   end
 
   def feeds_groups
-    Feed.all.group_by{|row| row.group_id }.map do |group_id, feeds|
+    FeedRepository.in_groups.group_by(&:group_id).map do |group_id, feeds|
       {
-        group_id: group_id || 0,
-        feed_ids: feeds.map{|f| f.id }.join(",")
+        group_id: group_id,
+        feed_ids: feeds.map(&:id).join(",")
       }
     end
   end
 end
-
